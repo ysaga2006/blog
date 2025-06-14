@@ -110,23 +110,31 @@ body {
 /* --- テーマ切り替えボタン --- */
 .theme-toggle-button {
     background: none;
-    border: none;
-    padding: 0;
+    /* ▼ 枠線を追加 ▼ */
+    border: 1px solid var(--color-border); 
+    /* ▼ 内側の余白を追加して、アイコンと枠線の間にスペースを作る ▼ */
+    padding: 6px; 
     margin: 0;
     cursor: pointer;
-    color: var(--color-text); /* アイコンの色をテキストカラーと連動させる */
+    color: var(--color-text);
     position: relative;
-    width: 24px;  /* アイコンのサイズに合わせる */
-    height: 24px; /* アイコンのサイズに合わせる */
+    /* ▼ ボタンのサイズはpadding分を考慮して自動調整されるようにwidth/heightを削除 ▼ */
+    /* width: 24px; */  /* この行を削除またはコメントアウト */
+    /* height: 24px; */ /* この行を削除またはコメントアウト */
+    /* ▼ 角を少し丸めて、上品な印象にする ▼ */
+    border-radius: 8px;
+    /* ▼ ホバー時の色の変化を滑らかにするアニメーション設定 ▼ */
+    transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-/* ボタン内のSVGアイコンの共通スタイル */
+/* ▼ ボタン内のアイコンサイズを明示的に指定 ▼ */
 .theme-toggle-button svg {
+    display: block; /* これを追加 */
+    width: 24px;    /* これを追加 */
+    height: 24px;   /* これを追加 */
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 6px;       /* paddingの上半分に合わせる */
+    left: 6px;      /* paddingの左半分に合わせる */
     transition: transform 0.4s ease, opacity 0.3s ease;
 }
 
