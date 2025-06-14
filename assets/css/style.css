@@ -126,10 +126,13 @@ body {
     place-items: center;
 }
 
-/* ボタンにマウスカーソルを乗せた時のスタイル */
-.theme-toggle-button:hover {
-    background-color: var(--color-hover-bg);
-    border-color: var(--color-text-light);
+/* ホバーが可能なデバイス（PCなど）でのみ適用されるスタイル */
+@media (hover: hover) {
+    /* ボタンにマウスカーソルを乗せた時のスタイル */
+    .theme-toggle-button:hover {
+        background-color: var(--color-hover-bg);
+        border-color: var(--color-text-light);
+    }
 }
 
 /* ボタン内のSVGアイコンの共通スタイル */
