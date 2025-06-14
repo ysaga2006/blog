@@ -1,0 +1,320 @@
+/*
+ * style.css
+ * ミニマリストブログのスタイルシート
+ */
+
+/* --- グローバル設定 & リセット --- */
+:root {
+    /* CSSカスタムプロパティ（変数）を定義 */
+    /* デフォルトはライトモードの配色 */
+    --color-text: #333333;
+    --color-text-light: #888888;
+    --color-background: #FFFFFF;
+    --color-border: #EAEAEA;
+    --color-hover-bg: #F8F8F8;
+    --color-interactive-border: #E0E0E0; /* 記事要素の枠線色 */
+    --color-interactive-border-hover: #BDBDBD; /* ホバー時の枠線色 */
+    --shadow-color: rgba(0, 0, 0, 0.05); /* ホバー時のシャドウ色 */
+
+    /* フォント設定 */
+    --font-family-base: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+
+    /* レイアウト設定 */
+    --container-width: 720px;
+    --spacing-unit: 1rem; /* 16px */
+}
+
+/* ダークモード用の配色を定義 */
+/* bodyに data-theme="dark" 属性が付与された場合に適用される */
+[data-theme="dark"] {
+    --color-text: #E0E0E0;
+    --color-text-light: #9E9E9E;
+    --color-background: #121212;
+    --color-border: #333333;
+    --color-hover-bg: #212121;
+    --color-interactive-border: #424242;
+    --color-interactive-border-hover: #757575;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 基本的なリセット */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-base);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    line-height: 1.7;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* 色の切り替えを滑らかにする */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- レイアウト --- */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: calc(var(--spacing-unit) * 2);
+}
+
+/* --- ヘッダーとフッター --- */
+/* Flexboxを使用してタイトルとスイッチを両端に配置 */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 2); /* 要素間の余白 */
+    padding-bottom: calc(var(--spacing-unit) * 2);
+    margin-bottom: calc(var(--spacing-unit) * 3);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.site-header .site-branding {
+    /* タイトルと説明文のラッパー */
+    flex-shrink: 0;
+}
+
+.site-header h1 {
+    font-size: 1.8rem; /* 少し小さくしてバランス調整 */
+    margin: 0;
+    font-weight: 700;
+}
+
+.site-header h1 a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.site-header p {
+    margin: calc(var(--spacing-unit) * 0.5) 0 0;
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+}
+
+.site-footer {
+    padding-top: calc(var(--spacing-unit) * 2);
+    margin-top: calc(var(--spacing-unit) * 4);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+}
+
+/* --- テーマ切り替えトグル --- */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 26px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+/* チェックされた時のスライダーの背景色 */
+input:checked + .slider {
+    background-color: var(--color-text); /* ダークモード時は明るいテキスト色になる */
+}
+
+/* チェックされた時のつまみの挙動 */
+input:checked + .slider:before {
+    transform: translateX(24px);
+    background-color: var(--color-background); /* ダークモード時は暗い背景色になる */
+}
+
+
+/* --- 記事一覧 (ホームページ) --- */
+.post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post-list li {
+    margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.post-list a {
+    display: block;
+    color: var(--color-text);
+    text-decoration: none;
+    padding: var(--spacing-unit);
+    /* 修正/追加: 枠線の追加とトランジションの調整 */
+    border: 1px solid var(--color-interactive-border);
+    border-radius: 6px; /* 角を少し丸める */
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.post-list a:hover {
+    background-color: var(--color-hover-bg);
+    border-color: var(--color-interactive-border-hover);
+    transform: translateY(-2px); /* 上に少し移動 */
+    box-shadow: 0 4px 12px var(--shadow-color); /* 影を追加して立体感を出す */
+}
+
+.post-list .post-title {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: calc(var(--spacing-unit) * 0.25);
+}
+
+.post-list .post-date {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+}
+
+
+/* --- 記事詳細ページ --- */
+#article-view[hidden] {
+    display: none;
+}
+
+.article-header {
+    margin-bottom: calc(var(--spacing-unit) * 3);
+    padding-bottom: calc(var(--spacing-unit) * 2);
+    border-bottom: 1px solid var(--color-border);
+}
+
+#article-title {
+    font-size: 2.25rem;
+    margin: 0 0 calc(var(--spacing-unit) * 0.5) 0;
+    line-height: 1.3;
+}
+
+.article-header .post-date {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+}
+
+.article-content {
+    font-size: 1rem;
+}
+
+.article-content p {
+    margin: 0 0 1.5em;
+}
+
+.article-content a {
+    color: var(--color-text);
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.article-content a:hover {
+    color: var(--color-text);
+    opacity: 0.8;
+}
+
+/* 見出し */
+.article-content h2,
+.article-content h3,
+.article-content h4 {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    font-weight: 700;
+    line-height: 1.4;
+}
+.article-content h2 { font-size: 1.8rem; }
+.article-content h3 { font-size: 1.5rem; }
+.article-content h4 { font-size: 1.2rem; }
+
+/* その他要素 */
+.article-content ul,
+.article-content ol {
+    padding-left: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.article-content blockquote {
+    margin: 0 0 1.5em;
+    padding-left: 1em;
+    border-left: 3px solid var(--color-border);
+    color: var(--color-text-light);
+}
+
+.article-content pre {
+    background-color: var(--color-hover-bg);
+    border: 1px solid var(--color-border);
+    padding: 1em;
+    overflow-x: auto;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.article-content code {
+    font-family: monospace;
+    background-color: var(--color-hover-bg);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+.article-content pre code {
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+
+/* 記事ナビゲーション */
+.article-nav {
+    margin-top: calc(var(--spacing-unit) * 4);
+}
+
+.article-nav a {
+    color: var(--color-text);
+    text-decoration: none;
+    /* 追加: 枠線の追加とトランジションの調整 */
+    display: inline-block;
+    padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 1.5);
+    border: 1px solid var(--color-interactive-border);
+    border-radius: 6px;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.article-nav a:hover {
+    background-color: var(--color-hover-bg);
+    border-color: var(--color-interactive-border-hover);
+    transform: translateY(-2px); /* 上に少し移動 */
+    box-shadow: 0 4px 12px var(--shadow-color); /* 影を追加して立体感を出す */
+}

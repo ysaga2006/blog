@@ -1,0 +1,15 @@
+---
+layout: default
+---
+<article>
+    <header class="article-header">
+        <h2>{{ page.title }}</h2>
+        <p class="post-date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y年%m月%d日" }}</time></p>
+    </header>
+    <div class="article-content">
+        {{ content }}
+    </div>
+</article>
+<nav class="article-nav">
+    <a href="{{ "/" | relative_url }}">← ホームに戻る</a>
+</nav>
