@@ -17,13 +17,27 @@ document.addEventListener('DOMContentLoaded', () => {
      * @param {string} theme - 'light' または 'dark'
      */
     const applyTheme = (theme) => {
-        if (theme === 'dark') {
-            document.body.setAttribute('data-theme', 'dark');
-        } else {
-            document.body.removeAttribute('data-theme');
+    // HTML内のtheme-colorメタタグを探す
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    // CSSで定義したライト/ダークの背景色
+    const lightColor = "#FFFFFF";
+    const darkColor = "#121212";
+
+    if (theme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+        // ブラウザのバーの色をダークモード用に設定
+        if (themeColorMeta) {
+            themeColorMeta.setAttribute('content', darkColor);
         }
-        localStorage.setItem('theme', theme);
-    };
+    } else {
+        document.body.removeAttribute('data-theme');
+        // ブラウザのバーの色をライトモード用に設定
+        if (themeColorMeta) {
+            themeColorMeta.setAttribute('content', lightColor);
+        }
+    }
+    localStorage.setItem('theme', theme);
+};
 
     /**
      * ページ読み込み時にlocalStorageからテーマを復元する
