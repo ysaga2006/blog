@@ -107,49 +107,49 @@ body {
     color: var(--color-text-light);
 }
 
-/* --- テーマ切り替えトグル --- */
-.theme-switch-wrapper {
-    display: flex;
-    align-items: center;
-}
-
-.theme-switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 26px;
-}
-
-.theme-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
+/* --- テーマ切り替えボタン --- */
+.theme-toggle-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
     cursor: pointer;
+    color: var(--color-text); /* アイコンの色をテキストカラーと連動させる */
+    position: relative;
+    width: 24px;  /* アイコンのサイズに合わせる */
+    height: 24px; /* アイコンのサイズに合わせる */
+}
+
+/* ボタン内のSVGアイコンの共通スタイル */
+.theme-toggle-button svg {
+    position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: 0.4s; 
-    border-radius: 26px;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s ease, opacity 0.3s ease;
 }
 
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 20px;
-    width: 20px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: 0.4s;
-    border-radius: 50%;
+/* 初期状態（ライトモード）では、太陽が見えて月が隠れている */
+.theme-toggle-button .moon {
+    opacity: 0;
+    transform: rotate(90deg);
+}
+.theme-toggle-button .sun {
+    opacity: 1;
+    transform: rotate(0deg);
 }
 
+/* ダークモード時のスタイル */
+[data-theme="dark"] .theme-toggle-button .moon {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+[data-theme="dark"] .theme-toggle-button .sun {
+    opacity: 0;
+    transform: rotate(-90deg);
+}
 /* チェックされた時のスライダーの背景色 */
 input:checked + .slider {
     background-color: var(--color-text); /* ダークモード時は明るいテキスト色になる */
