@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * 指定されたテーマを適用し、localStorageに保存する
      * @param {string} theme - 'light' または 'dark'
      */
-    const applyTheme = (theme) => {
+    /*const applyTheme = (theme) => {
         if (theme === 'dark') {
             document.body.setAttribute('data-theme', 'dark');
             themeToggle.checked = true;
