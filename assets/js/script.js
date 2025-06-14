@@ -32,14 +32,29 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- テーマ切り替えのイベントリスナー ---
-    // トグルが変更されたら、選択に応じたテーマを適用する
-    themeToggle.addEventListener('change', () => {
-        if (themeToggle.checked) {
-            applyTheme('dark');
-        } else {
-            applyTheme('light');
-        }
-    });
+themeToggle.addEventListener('click', () => { // ← 'click'イベントに変更
+    // 現在のテーマ状態を取得 (bodyにdata-theme属性があるかどうか)
+    const currentTheme = document.body.dataset.theme;
+    
+    // 現在がダークならライトに、そうでなければダークに切り替える
+    if (currentTheme === 'dark') {
+        applyTheme('light');
+    } else {
+        applyTheme('dark');
+    }
+});
+
+// applyTheme関数からもチェックボックス操作の行を削除
+const applyTheme = (theme) => {
+    if (theme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+        // themeToggle.checked = true; // この行は不要なので削除
+    } else {
+        document.body.removeAttribute('data-theme');
+        // themeToggle.checked = false; // この行は不要なので削除
+    }
+    localStorage.setItem('theme', theme);
+};
 
 
     // --- 初期化処理 ---
