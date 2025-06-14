@@ -109,7 +109,7 @@ body {
 
 /* --- テーマ切り替えボタン --- */
 .theme-toggle-button {
-    background: none;
+    background-color: transparent;
     /* ▼ 枠線を追加 ▼ */
     border: 1px solid var(--color-border); 
     /* ▼ 内側の余白を追加して、アイコンと枠線の間にスペースを作る ▼ */
