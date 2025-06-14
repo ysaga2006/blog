@@ -109,37 +109,22 @@ body {
 
 /* --- テーマ切り替えボタン --- */
 .theme-toggle-button {
-  background: none;
-  border: 1px solid var(--color-border);
-  /* ▼ paddingを調整して、アイコン全体を囲むスペースを作る ▼ */
-  padding: 8px;
-  margin: 0;
-  cursor: pointer;
-  color: var(--color-text);
-  position: relative;
-  /* ▼ ボタンのwidthとheightを明示的に指定し、アイコンが収まる正方形に近い形にする ▼ */
-  width: 40px; /* アイコン24px + 左右のpadding各8px = 40px */
-  height: 40px; /* アイコン24px + 上下のpadding各8px = 40px */
-  /* ▼ 角の丸みを少し大きくして、より柔らかい印象に ▼ */
-  border-radius: 10px;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-  /* ▼ アイコンを中央に配置するための設定 ▼ */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background: none;
+    border: 1px solid var(--color-border);
+    padding: 0; /* paddingは不要になります */
+    margin: 0;
+    cursor: pointer;
+    color: var(--color-text);
+    position: relative;
+    width: 42px;  /* サイズを微調整 */
+    height: 42px; /* サイズを微調整 */
+    border-radius: 10px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    
+    /* ▼ アイコンを中央に重ねて配置するためのGrid設定 ▼ */
+    display: grid;
+    place-items: center;
 }
-
-/* ▼ position: absolute を削除し、ボタンの中央に配置されるようにする ▼ */
-.theme-toggle-button svg {
-  display: block;
-  width: 24px;
-  height: 24px;
-  /* position: absolute; */ /* この行を削除 */
-  /* top: 6px; */    /* これらの行も削除 */
-  /* left: 6px; */
-  transition: transform 0.4s ease, opacity 0.3s ease;
-}
-</code></pre>
 
 /* ボタンにマウスカーソルを乗せた時のスタイル */
 .theme-toggle-button:hover {
@@ -147,14 +132,13 @@ body {
     border-color: var(--color-text-light);
 }
 
-/* ▼ ボタン内のアイコンサイズを明示的に指定 ▼ */
+/* ボタン内のSVGアイコンの共通スタイル */
 .theme-toggle-button svg {
-    display: block; /* これを追加 */
-    width: 24px;    /* これを追加 */
-    height: 24px;   /* これを追加 */
-    position: absolute;
-    top: 6px;       /* paddingの上半分に合わせる */
-    left: 6px;      /* paddingの左半分に合わせる */
+    width: 24px;
+    height: 24px;
+    /* ▼ アイコンを同じGridセルに配置して完全に重ねる設定 ▼ */
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
     transition: transform 0.4s ease, opacity 0.3s ease;
 }
 
@@ -178,6 +162,7 @@ body {
     opacity: 0;
     transform: rotate(-90deg);
 }
+
 /* チェックされた時のスライダーの背景色 */
 input:checked + .slider {
     background-color: var(--color-text); /* ダークモード時は明るいテキスト色になる */
