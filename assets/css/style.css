@@ -146,7 +146,7 @@ body {
     left: 3px;
     bottom: 3px;
     background-color: white;
-    transition: 0.4s;
+    transition: transform 0.4s;
     border-radius: 50%;
 }
 
