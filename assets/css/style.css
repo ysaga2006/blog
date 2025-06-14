@@ -70,10 +70,18 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: calc(var(--spacing-unit) * 2); /* 要素間の余白 */
+    gap: calc(var(--spacing-unit) * 2);
     padding-bottom: calc(var(--spacing-unit) * 2);
     margin-bottom: calc(var(--spacing-unit) * 3);
     border-bottom: 1px solid var(--color-border);
+    /* ▼ 1つ目：ヘッダーの文字色が滑らかに変わるようにtransitionを追加 ▼ */
+    transition: color 0.3s ease;
+}
+
+/* ▼ 2つ目：ダークモード時にヘッダーを再描画させるためのハックを追加 ▼ */
+[data-theme="dark"] .site-header {
+    /* 目には見えませんが、この一行がブラウザに再描画を促します */
+    transform: translateZ(0);
 }
 
 .site-header .site-branding {
