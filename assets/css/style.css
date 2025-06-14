@@ -134,7 +134,7 @@ body {
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    /* transition: 0.4s; */
+    transition: 0.4s; 
     border-radius: 26px;
 }
 
@@ -146,7 +146,7 @@ body {
     left: 3px;
     bottom: 3px;
     background-color: white;
-    transition: transform 0.4s;
+    transition: 0.4s;
     border-radius: 50%;
 }
 
