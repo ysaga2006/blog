@@ -8,7 +8,10 @@ title: Home
             <li>
                 <a href="{{ post.url | relative_url }}">
                     <h2>{{ post.title }}</h2>
-                    <p class="post-date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y年%m月%d日" }}</time></p>
+                    <div class="post-meta-container">
+                        <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y年%m月%d日" }}</time>
+                        <span class="post-word-count">{{ post.content | strip_html | size }} 文字</span>
+                    </div>
                 </a>
             </li>
         {% endfor %}
