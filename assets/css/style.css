@@ -206,7 +206,22 @@ body {
     color: var(--color-text-light);
 }
 
+/* ▼ここから追加▼ */
+.post-meta-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* 日付と文字数の間のスペース */
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+}
 
+/* 日付と文字数のスタイルをコンテナ側で一括指定 */
+.post-list .post-date,
+.post-list .post-word-count {
+    font-size: inherit;
+    color: inherit;
+}
+/* ▲ここまで追加▲ */
 /* --- 記事詳細ページ --- */
 #article-view[hidden] {
     display: none;
@@ -338,4 +353,22 @@ body {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+}
+/* --- リーディングプログレスバー --- */
+#progress-bar {
+    /* 画面上部に固定表示 */
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 200; /* ヘッダーなどより手前に表示 */
+
+    /* バーの高さと色 */
+    height: 3px;
+    background-color: var(--color-text);
+
+    /* 初期状態では幅0%（非表示） */
+    width: 0%;
+
+    /* 幅が変わる際のアニメーション（任意） */
+    /* transition: width 0.1s linear; */
 }
