@@ -1,18 +1,26 @@
 ---
 layout: default
 ---
+
+<div id="progress-bar"></div>
+
 <article>
     <header class="article-header">
         <h2>{{ page.title }}</h2>
-        <p class="post-date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y年%m月%d日" }}</time></p>
+        <div class="post-meta-container">
+            <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y年%m月%d日" }}</time>
+            <span class="post-word-count">{{ page.content | number_of_words }} words</span>
+        </div>
     </header>
     <div class="article-content">
         {{ content }}
     </div>
 </article>
+
 <nav class="article-nav">
     <a href="{{ "/" | relative_url }}">← ホームに戻る</a>
 </nav>
+
 <div id="scroll-end-message">
     <p>最後まで読んでくれてありがとう！</p>
 </div>
