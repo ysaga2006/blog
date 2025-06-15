@@ -1,8 +1,3 @@
-/*
- * script.js
- * ミニマリストブログのインタラクションを制御 (完成版)
- */
-
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- テーマ切り替え機能 ---
