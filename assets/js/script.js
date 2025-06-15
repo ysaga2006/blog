@@ -48,4 +48,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    // ... 既存のコード ...
+
+// --- ▼ここから追加：リーディングプログレスバー機能▼ ---
+
+// 記事ページにしか存在しないプログレスバーの要素を取得
+const progressBar = document.getElementById('progress-bar');
+
+// プログレスバーが存在する場合のみ、スクロールイベントの監視を開始
+if (progressBar) {
+    window.addEventListener('scroll', () => {
+        // スクロール可能な高さ全体を計算
+        let scrollableHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+        // 現在の進捗をパーセンテージで計算
+        let scrollProgress = (window.scrollY / scrollableHeight) * 100;
+
+        // プログレスバーの幅を更新
+        progressBar.style.width = scrollProgress + "%";
+    });
+}
 });
