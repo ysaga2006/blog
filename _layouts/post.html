@@ -9,8 +9,7 @@ layout: default
         <h2>{{ page.title }}</h2>
         <div class="post-meta-container">
             <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y年%m月%d日" }}</time>
-            <span class="post-word-count">{{ page.content | number_of_words }} words</span>
-        </div>
+            <span class="post-word-count">{{ page.content | strip_html | size }} 文字程度</span>
     </header>
     <div class="article-content">
         {{ content }}
