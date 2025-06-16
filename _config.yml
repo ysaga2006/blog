@@ -53,3 +53,9 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+# _config.yml の末尾に追加
+
+# Markdownプロセッサkramdownの設定
+kramdown:
+  # 脚注から本文に戻るリンクのテキストを上向き矢印に変更
+  footnote_backlink: '↑'
