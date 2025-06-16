@@ -374,12 +374,12 @@ body {
 }
 /* --- 脚注の戻りリンクのスタイル --- */
 .reverse-footnote {
-    color: var(--color-text-light); /* テーマに合った控えめな色にする */
-    text-decoration: none !important;          /* 下線を消す */
-    border: 1px solid var(--color-border); /* 枠線で囲んでボタン風にする */
-    padding: 2px 8px;               /* 枠線との余白 */
-    border-radius: 4px;             /* 角を丸める */
-    font-size: 0.9em;               /* 少し文字を小さくする */
+    color: var(--color-text-light);
+    text-decoration: none !important; /* 下線を強制的に非表示にする */
+    border: 1px solid var(--color-border);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
     transition: background-color 0.2s, color 0.2s;
 }
 
